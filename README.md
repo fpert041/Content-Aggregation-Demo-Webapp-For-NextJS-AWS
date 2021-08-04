@@ -74,4 +74,10 @@ Istall package via:
 
 ## TODO
 
-https://www.youtube.com/watch?v=cLKLqpxPSws&t=24s&ab_channel=JarrodWatts
+https://github.com/fpert041/Content-Aggregation-Demo-Webapp-For-NextJS-AWS
+
+- Setting Up The Theme
+- Design
+- AWS Amplify GraphQL + Authentication + Auth Context
+- Frontend dynamic data
+- ...
