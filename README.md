@@ -52,3 +52,8 @@ For the above to work on your local IDe you might need to install the relevant p
 On this project we deleted the default styling and replaced them with [Material UI](https://www.williamkurniawan.com/blog/step-by-step-guidelines-to-implement-material-ui-in-next-js-2020)
 
 Using the NextJS [setup example](https://github.com/vercel/next.js/tree/canary/examples/with-material-ui)
+
+Istall package via:
+
+- `yarn add @material-ui/core`
+- `yarn add @material-ui/icons`
