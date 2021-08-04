@@ -29,9 +29,23 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## AWS Amplify ─ Learn More
+## AWS Amplify (for deployment)
 
-[TBC]
+To deploy this project on AWS and take advantage of the Amplify ecosystem, it requires the [Amplify Cli](https://docs.amplify.aws/cli/start/install) and an AWS Account.
+
+- `npm install -g @aws-amplify/cli`
+- `amplify configure` (+ configuration steps on AWS's website via browser and via the console)
+- `amplify init`
+
+Some next steps:
+`amplify status` will show you what you've added already and if it's locally configured or deployed
+`amplify add <category>` will allow you to add features like user login or a backend API
+`amplify push` will build all your local backend resources and provision it in the cloud
+`amplify console` to open the Amplify Console and view your project status
+`amplify publish` will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+Pro tip:
+Try `amplify add api` to create a backend API and then `amplify publish` to deploy everything
 
 ## Typescript, Eslint, pretties setup
 
