@@ -61,7 +61,10 @@ Check out this blog as per [how and why](https://decodenatura.com/how-to-set-up-
 
 For the above to work on your local IDe you might need to install the relevant plugins
 
-## CSS / Styling
+
+## Project parts
+
+### CSS / Styling
 
 On this project we deleted the default styling and replaced them with [Material UI](https://www.williamkurniawan.com/blog/step-by-step-guidelines-to-implement-material-ui-in-next-js-2020)
 
@@ -72,12 +75,50 @@ Istall package via:
 - `yarn add @material-ui/core`
 - `yarn add @material-ui/icons`
 
+### Set up a default styles theme via a CSS library (MaterialUI)
+
+*DOING 1*
+Got to the [MaterialUI](https://material-ui.com/customisation/color), heat to *tools by the community* and then to the MaterialUI theme editor. There you will be able to make a theme in a visual way, preview it live, and then download the end result as a set of CSS instructions in a JSON file.
+
+You can then paste this into your `src/theme.ts` file.
+
+*Dev idea for atom: can you find a plugin to highlight css colours in the editor and preview colours?*
+
+Functions imported/used from MaterialUI:
+- responsiveFontSizes()
+
+### Add GraphQL API via AWS schema
+
+*Doing 2*
+With the AWS CLI installed, we use the `amplify add api` command to setup a graphQL API via the AWS schema setup.
+
+In the `schema.graphql` file we use:
+- `@model`, `@connection`, and `@key` definitions to types to create the correct types and create the required one-to-one and one-to-one relationships amongst theme. Used types:
+  - Post
+  - Comment
+- `@auth` to create authorisation rules to read, create, and/or edit an object of a certain type (via an array of `rules`)
+
+To commit changes to the API we use `amplify push`. We export the code when prompted to have AWS set up all the required code to leverage this API in the webapp.
+
+To review the AWS API we use `api console`
+
+By default, the schema syncs to an AWS **DynamoDB** instance.
+
+### Forms: [React Hook Form](https://react-hook-form.com)
+
+*Doing 3*
+
+Installed via `yarn add react-hook-form` then integrate via MateriaUI/.
+
+*Dev note: can you install an ES7 React snippet plugin in Atom to help you build functions using shortcodes? (eg 'tsrfc' for a boilerplate 'typescript react functional component')*
+
+All setup for a **Sign up Form** is stored in a new page: `src/pages/signup.tsx`
+
+
 ## TODO
 
 https://github.com/fpert041/Content-Aggregation-Demo-Webapp-For-NextJS-AWS
 
-- Setting Up The Theme
-- Design
-- AWS Amplify GraphQL + Authentication + Auth Context
+- Add AWS Amplify API (GraphQL schema) + Authentication (via Cognito user pool) + Auth Context
 - Frontend dynamic data
 - ...
