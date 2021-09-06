@@ -1,0 +1,44 @@
+"""
+Post object type
+"""
+type Post
+  @model
+  @auth(
+    rules: [
+      # Owner can perform any action on their own Post
+      { allow: owner, operations: [create, update, delete, read] }
+      # Signed in users can read all Posts
+      { allow: private, operations: [read] }
+      # Non-signed in users can read all Posts
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+}
+
+"""
+Comment (of Post) object type
+"""
+type Comment
+  @model
+  @key(name: "byPost", fields: ["postID", "content"])
+  @auth(
+    rules: [
+      # Owner can perform any action on their own Comment
+      { allow: owner, operations: [create, update, delete, read] }
+      # Signed in users can read all Comments
+      { allow: private, operations: [read] }
+      # Non-signed in users can read all Comments
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  postID: ID!
+  post: Post @connection(fields: ["postID"])
+  content: String!
+}
+
+# https://docs.amplify.aws/cli/graphql-transformer/model/
+# https://docs.amplify.aws/cli/graphql-transformer/auth/

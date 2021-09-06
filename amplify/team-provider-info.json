@@ -11,5 +11,23 @@
       "StackId": "arn:aws:cloudformation:eu-west-1:914123070918:stack/amplify-nextjsamplifydemo-dev-175449/afce0d70-f544-11eb-80a2-06aead9fe00b",
       "AmplifyAppId": "d23umnbb00grbw"
     }
+  },
+  "contentagg": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nextjsamplifydemo-contentagg-144918-authRole",
+      "UnauthRoleArn": "arn:aws:iam::495433500987:role/amplify-nextjsamplifydemo-contentagg-144918-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::495433500987:role/amplify-nextjsamplifydemo-contentagg-144918-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-nextjsamplifydemo-contentagg-144918-deployment",
+      "UnauthRoleName": "amplify-nextjsamplifydemo-contentagg-144918-unauthRole",
+      "StackName": "amplify-nextjsamplifydemo-contentagg-144918",
+      "StackId": "arn:aws:cloudformation:eu-west-2:495433500987:stack/amplify-nextjsamplifydemo-contentagg-144918/3e77bcb0-0a62-11ec-a2d3-02f0f3e7b0cc",
+      "AmplifyAppId": "d3ku4d6hhyj3nz"
+    },
+    "categories": {
+      "auth": {
+        "nextjsamplifydemo3426ac0e": {}
+      }
+    }
   }
 }

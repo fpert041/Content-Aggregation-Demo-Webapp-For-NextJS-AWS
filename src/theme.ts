@@ -17,8 +17,18 @@ const theme = createTheme({
       default: "#fff",
     },
   },
+  typography: {
+    fontFamily: [
+      "Founders Grotesk",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "Helvetica Neue",
+      "Helvetica",
+      "Arial",
+      "sans-serif",
+    ].join(","),
+  },
 });
 
 // Wrap theme into a responsiveFontSizes() function to make all fonts responsive
-export default responsiveFontSizes( theme );
-//export default theme;
+export default responsiveFontSizes(theme);

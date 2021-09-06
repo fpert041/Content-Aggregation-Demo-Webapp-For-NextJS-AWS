@@ -13,7 +13,8 @@
     "@material-ui/icons": "^4.11.2",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.14.2"
   },
   "devDependencies": {
     "@types/node": "^16.4.11",
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "prettier": "^2.3.2",
+    "react-autocomplete-cli": "^0.0.3",
     "typescript": "^4.3.5"
   }
 }
