@@ -2,6 +2,12 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, TextField, Grid } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
+
+import { Auth } from "@aws-amplify/auth";
+
+// import { useUser } from "../context/AuthContext";
 
 // MaterialUI styling for the page
 const useStyles = makeStyles((theme: Theme) =>
@@ -21,27 +27,68 @@ interface IFormInput {
   password: string;
 }
 
-// Execute a JS script when a form is submitted to handle the submission (eg validation)
-const onSubmit: SubmitHandler<IFormInput> = (data) => {
-  console.log("Submitted the form data");
-  console.log(data);
-};
-
-// regex patterns to validate form fields
-const emailRegex = /\S+@\S+\.\S+/;
-const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
-/** passwrod validation taken from:
- * https://stackoverflow.com/questions/3466850/regular-expression-to-enforce-complex-passwords-matching-3-out-of-4-rules
- * (?=.* {CARACTER_RULE} ) >> Lookahead expression
- * [A-Z] >> enforce presence of an uppercase character
- * [a-z] >> enforce presence of a lowercase character
- * \d >> enforce presence of a number
- * \ >> enforce presence of a non-alphanumeric character
- * Note: may be best to build a custom React Hook:
- * taken from https://medium.com/@steven_creates/creating-a-custom-react-hook-for-password-validation-46fc421c16ee
- **/
-
 export default function Signup() {
+  // ------ Component Declarations ------
+
+  // AWS Amplify signup via Cognito Pool
+  async function signUpWithAmplify(data: IFormInput) {
+    const { email, password } = data;
+    const username = email;
+    try {
+      const { user } = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email, // optional
+          // other custom attributes
+        },
+      });
+      console.log(user);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  const [open, setOpen] = React.useState(false);
+  const [signUpError, setSignUpError] = React.useState<string>("");
+
+  // Execute a JS script when a form is submitted to handle the submission (eg validation)
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log("Submitted the form data");
+    console.log(data);
+    try {
+      signUpWithAmplify(data);
+    } catch (err) {
+      setSignUpError(err.message);
+      console.log(err);
+      setOpen(true);
+    }
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  // regex patterns to validate form fields
+  const emailRegex = /\S+@\S+\.\S+/;
+  const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
+  /** passwrod validation taken from:
+   * https://stackoverflow.com/questions/3466850/regular-expression-to-enforce-complex-passwords-matching-3-out-of-4-rules
+   * (?=.* {CARACTER_RULE} ) >> Lookahead expression
+   * [A-Z] >> enforce presence of an uppercase character
+   * [a-z] >> enforce presence of a lowercase character
+   * \d >> enforce presence of a number
+   * \ >> enforce presence of a non-alphanumeric character
+   * Note: may be best to build a custom React Hook:
+   * taken from https://medium.com/@steven_creates/creating-a-custom-react-hook-for-password-validation-46fc421c16ee
+   **/
+
+  // ------ Component Actions ------
+
   // use MaterialUI styles: https://material-ui.com/styles/basics/
   const classes = useStyles();
 
@@ -127,11 +174,16 @@ export default function Signup() {
         </Grid>
         {/* FORM SUBMISSION */}
         <Grid item>
-          {" "}
           <Button className={classes.root} type="submit" variant="contained">
             Sign up!
           </Button>
         </Grid>
+        {/* Display message in case of AWS error when signing up*/}
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error">
+            {signUpError}
+          </Alert>
+        </Snackbar>
       </Grid>
     </form>
   );

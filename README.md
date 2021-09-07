@@ -113,9 +113,7 @@ To review the AWS API we use `api console`
 
 By default, the schema syncs to an AWS **DynamoDB** instance.
 
-### Forms: [React Hook Form](https://react-hook-form.com)
-
-_Doing 3_
+### Create Signup Form with [React Hook Form](https://react-hook-form.com)
 
 Installed via `yarn add react-hook-form` then integrate via MateriaUI (They have [examples on how to integrate 3rd party UI libraries](https://react-hook-form.com/get-started/#IntegratingwithUIlibraries).
 
@@ -125,10 +123,20 @@ You can make the fields for the form using MaterialUI's [Text Field examples](ht
 
 All setup for a **Sign up Form** is stored in a new page: `src/pages/signup.tsx`
 
+### Enable User Signup in the backend via Amplify
+
+This project uses [Cognito Pool](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/) to sign users up.
+
+Use MateriaUI's [Snackbars](https://material-ui.com/components/snackbars/) to notify users of success/errors, which requires the package `@material-ui/lab` (`yarn add` / `npm i` + `@materialui/lab`)
+
+Authontication on Amplify requires you to install (as usual via `yarn` or `npm`) the package `aws-amplify` as per AWS's [docs](https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/#configure-your-application)
+
+We use Context
+
 ## TODO
 
 https://github.com/fpert041/Content-Aggregation-Demo-Webapp-For-NextJS-AWS
 
-- Add AWS Amplify API (GraphQL schema) + Authentication (via Cognito user pool) + Auth Context
+- Add AWS Authentication (via Cognito user pool) + Auth Context
 - Frontend dynamic data
 - ...
